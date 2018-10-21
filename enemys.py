@@ -1,20 +1,43 @@
 import pygame
 import random
 
+DARKORANGE = (255,140,0)
+DEEPSKY = (0,191,255)
+PINK = (255,64,64)
+
+# initiate the brick names and types
+FAU = "2FA"
+ATV = "Antivirus Software"
+FRW = "Firewall"
+PWM = "Password manager"
+BRS = "Browser plugin"
+PSW = "Strong password"
+brickList = [FAU, ATV, FRW, PWM, BRS, PSW]
+scoreList = [1,2,3,1,2,4]
+lifeList = [5,2,4,7,2,3]
+colorList = [DEEPSKY, DARKORANGE, DARKORANGE, DEEPSKY, PINK, DEEPSKY]
+boardColorList = [DARKORANGE, DEEPSKY, DEEPSKY, DARKORANGE, DEEPSKY, DEEPSKY, PINK]
+
 class Board(object):
+
     def __init__(self):
         # self.board = [[0] * 10 for i in range(6)]
         self.cells = list()
         self.holes = list()
         self.bricks = list()
+        self.brickList = brickList
+        self.scoreList = scoreList
+        self.lifeList = lifeList
+        self.colorList = colorList
+        self.boardColorList = boardColorList
 
     def addCell(self, speed, position):
         cell = Cell(speed, position)
         if cell not in self.cells:
             self.cells.append(cell)
 
-    def addBrick(self, position, color):
-        brick = Brick(position, color)
+    def addBrick(self, position, color, index):
+        brick = Brick(position, color, index)
         if brick not in self.bricks:
             self.bricks.append(brick)
 
@@ -27,13 +50,16 @@ class Board(object):
 
     def updateCell(self):
         L = []
+        count = 0
         for cell in self.cells:
             cell.position = (cell.position[0], max(cell.position[1] - 1, 0))
         for cell in self.cells:
             if not self.collisionWith(cell):
                 L.append(cell)
+            else:
+                count += 1
         self.cells = L
-        print(len(self.cells))
+        return count
 
     def updateBrick(self):
         L = []
@@ -74,22 +100,40 @@ class Cell(object):
 class Brick(object):
     # add width and length
     # add type later
-    def __init__(self, position, color):
+    def __init__(self, position, color, index):
         self.position = position
-        self.life = 5
         self.color = color
+        self.name = brickList[index]
+        self.life = lifeList[index]
+        self.score = scoreList[index]
 
     def collision(self, cell):
-        print(cell.position, self.position)
         if (cell.position == self.position):
             self.life -= 1
             return True
 
     def __hash__(self):
-        return hash((self.position, self.color))
+        return hash((self.position, self.name))
 
     def __eq__(self, other):
-        return self.position == other.position and self.color == self.color
+        return self.position == other.position and self.name == self.name
 
     def __repr__(self):
-        return "%s, %s, %s" % (str(self.position), str(self.life), str(self.color))
+        return "%s, %s, %s" % (str(self.position), str(self.name))
+
+class Accounts(Brick):
+    def __init__(self, position, index):
+        color = DARKORANGE
+        super.__init__(position, color, index)
+
+class Data(Brick):
+    def __init__(self, position, index):
+        color = DEEPSKY
+        super.__init__(position, color, index)
+
+class Browser(Brick):
+    def __init__(self, position, index):
+        color = PINK
+        super.__init__(position, color, index)
+
+        
