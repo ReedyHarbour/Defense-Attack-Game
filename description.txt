@@ -1,0 +1,6 @@
+Two-factor (2FA) combines "a thing you have" (token or smartphone) with a "thing you know" (your username and password). It adds an additional layer of security.
+Antivirus software is a program that is designed to prevent, search for, detect, and remove software viruses to help protect users' data.
+A Firewall is a network security system that monitors and controls all your incoming and outgoing network traffic based on predetermined security rules. Protect users' data.
+Password managers store the passwords in an encrypted format and provide secure access to all the password information with the help of a master password.
+Protect yourself against Potentially Unwanted Extensions that can unexpectedly change your browser settings, disrespect your privacy, or otherwise cause problems.
+A Strong Password contains many characters, or a random combination of letters, numbers and special characters - or both.

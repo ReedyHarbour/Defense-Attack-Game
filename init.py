@@ -3,6 +3,7 @@ import pygame
 from math import pi
 import enemys 
 import random
+import render
 
 pygame.init()
  
@@ -31,6 +32,7 @@ class Game(object):
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font('Penelope Anne.ttf', 20)
         self.font.set_bold(True)
+        self.regular = pygame.font.SysFont('Arial', 15)
         self.dragging = False
 
         self.board = enemys.Board()
@@ -106,8 +108,24 @@ class Game(object):
         textSurf = self.font.render("Game Over", True, BROWN)
         textRect = textSurf.get_rect()
         textRect.center = (WIDTH//2, HEIGHT//2 - DEF_MARGIN)
+
         self.screen.blit(textSurf, textRect)
 
+    def displayDescription(self, index):
+        text = self.board.description[index]
+        surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+        size = [WIDTH//5+DEF_MARGIN+MARGIN + index * (self.gridWidth +MARGIN), DEF_MARGIN+MARGIN, 
+                self.gridWidth, self.gridHeight]
+        newSize = [size[0] + size[2]//2, size[1] + size[3]//2, 3*self.gridWidth, 2*self.gridHeight]
+        r = pygame.draw.rect(surface, BLACK, newSize)
+        # textSurf = self.font.render(text, True, BLACK)
+        # textRect = textSurf.get_rect()
+        # textRect.center = (newSize[0]+newSize[2]//2, newSize[1]+newSize[3]//2)
+        rendered_text = render.render_textrect(text, self.regular, r, WHITE, BLACK)
+        #self.screen.blit(textSurf, textRect)
+        surface.blit(rendered_text, r)
+
+        self.screen.blit(surface, (0,0))
     def drawCards(self):
         size = [WIDTH//5+DEF_MARGIN+MARGIN, DEF_MARGIN+MARGIN, self.gridWidth, self.gridHeight]
         for i in range(len(self.cards)):
@@ -209,6 +227,7 @@ class Game(object):
             pygame.draw.rect(self.screen, self.currColor, [self.currPos[0], self.currPos[1], 
                 68, 68]) 
         self.displayText()
+
         if self.gameOver:
             self.displayScore()
 
@@ -218,6 +237,7 @@ class Game(object):
             # This limits the while loop to a max of 10 times per second.
             # Leave this out and we will use all CPU we can.
             self.clock.tick(5)
+            self.redrawAll()
             if not self.gameOver:
                 counter = (counter + 1) % 20
                 if (counter == 0):
@@ -231,6 +251,7 @@ class Game(object):
                 if event.type == pygame.QUIT: # If user clicked close
                     self.done = True # Flag that we are done so we exit this loop
                 if not self.gameOver:
+
                     # detect mouse dragging the bricks
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if event.button == 1: 
@@ -252,10 +273,17 @@ class Game(object):
                     elif event.type == pygame.MOUSEMOTION:
                         if self.dragging:
                             self.currPos = event.pos
+
+            pos = pygame.mouse.get_pos()
+            color = self.screen.get_at(pos)
+            index = self.isValid(pos, color)
+            if index != None:
+                self.displayDescription(index)
+
                          
             # All drawing code happens after the for loop and but
             # inside the main while done==False loop.
-            self.redrawAll()
+            # self.redrawAll()
             # Go ahead and update the screen with what we've drawn.
             # This MUST happen after all the other drawing commands.
             pygame.display.flip()

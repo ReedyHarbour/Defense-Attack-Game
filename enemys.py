@@ -18,6 +18,9 @@ lifeList = [5,2,4,7,2,3]
 colorList = [DEEPSKY, DARKORANGE, DARKORANGE, DEEPSKY, PINK, DEEPSKY]
 boardColorList = [DARKORANGE, DEEPSKY, DEEPSKY, DARKORANGE, DEEPSKY, DEEPSKY, PINK]
 
+with open("description.txt", "r+") as txt:
+    description = txt.read().split("\n")
+
 class Board(object):
 
     def __init__(self):
@@ -30,6 +33,7 @@ class Board(object):
         self.lifeList = lifeList
         self.colorList = colorList
         self.boardColorList = boardColorList
+        self.description = description
 
     def addCell(self, speed, position):
         cell = Cell(speed, position)
