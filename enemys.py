@@ -7,15 +7,17 @@ PINK = (255,64,64)
 
 # initiate the brick names and types
 FAU = "2FA"
-ATV = "Antivirus Software"
-FRW = "Firewall"
-PWM = "Password manager"
-BRS = "Browser plugin"
-PSW = "Strong password"
+ATV = "ATV SFTW"
+FRW = "FRWL"
+PWM = "PSW MNG"
+BRS = "BRS PLGN"
+PSW = "STRN PSW"
 brickList = [FAU, ATV, FRW, PWM, BRS, PSW]
-scoreList = [1,2,3,1,2,4]
-lifeList = [5,2,4,7,2,3]
+scoreList = [1,2,3,3,2,1]
+lifeList = [2,3,4,3,2,1]
 colorList = [DEEPSKY, DARKORANGE, DARKORANGE, DEEPSKY, PINK, DEEPSKY]
+protectRadius = [2,2,2,3,3,1]
+coolDownTime = [2,2,2,3,3,1]
 boardColorList = [DARKORANGE, DEEPSKY, DEEPSKY, DARKORANGE, DEEPSKY, DEEPSKY, PINK]
 
 with open("description.txt", "r+") as txt:
@@ -28,10 +30,14 @@ class Board(object):
         self.cells = list()
         self.holes = list()
         self.bricks = list()
+
         self.brickList = brickList
         self.scoreList = scoreList
         self.lifeList = lifeList
         self.colorList = colorList
+        self.coolDownTime = coolDownTime
+        self.protectRadius = protectRadius
+
         self.boardColorList = boardColorList
         self.description = description
 
@@ -44,6 +50,8 @@ class Board(object):
         brick = Brick(position, color, index)
         if brick not in self.bricks:
             self.bricks.append(brick)
+            return self.scoreList[index]
+        return 0
 
     def collisionWith(self, cell):
         for brick in self.bricks:
@@ -109,12 +117,13 @@ class Brick(object):
         self.color = color
         self.name = brickList[index]
         self.life = lifeList[index]
+        self.defaultLife = lifeList[index]
         self.score = scoreList[index]
+        self.radius = protectRadius[index]
+        self.coolDown = coolDownTime[index]
 
     def collision(self, cell):
-        if (cell.position == self.position):
-            self.life -= 1
-            return True
+        return (cell.position == self.position)
 
     def __hash__(self):
         return hash((self.position, self.name))
