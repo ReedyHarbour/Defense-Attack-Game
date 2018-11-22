@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Card
   layers:
   - Default
   - TransparentFX
@@ -13,10 +14,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Cell
+  - Brick
+  - Foreground
   - 
   - 
   - 
@@ -38,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 896257089
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Brick
+    uniqueID: 3692108227
+    locked: 0
+  - name: Cell
+    uniqueID: 812657381
+    locked: 0
+  - name: Foreground
+    uniqueID: 220885281
     locked: 0

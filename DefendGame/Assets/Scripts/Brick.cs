@@ -6,14 +6,19 @@ public class Brick : MonoBehaviour {
 
     // Use this for initialization
     public Board board;
-    void Start (int row, int col, int type) {
-        Vector2 pos = new Vector2(row, col);
-        int brickType = type;
-        int life = board.lifeList[type];
-        int defaultLife = board.lifeList[type];
-        int score = board.scoreList[type];
-        int radius = board.protectRadius[type];
-        int coolDown = board.coolDownTime[type];
+    public int type;
+    public string name;
+    public int life;
+    public int defaultLife;
+    public int score;
+    public int radius;
+    public int coolDown;
+    void Start () {
+        //life = board.lifeList[type];
+        //defaultLife = board.lifeList[type];
+        //score = board.scoreList[type];
+        //radius = board.protectRadius[type];
+        //coolDown = board.coolDownTime[type];
 
     }
 	
