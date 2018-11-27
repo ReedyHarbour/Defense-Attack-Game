@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Generate : MonoBehaviour {
-    public Transform virus;
+    public Transform canvas;
 
-    public void generateVirus()
+    public void generateCard()
     {
-        Transform cell = Instantiate(virus, transform.position, Quaternion.identity);
-        if (!Board.cells.Contains(cell))
-        {
-            Board.cells.Add(cell);
-        }
+        Transform[] cards = canvas.GetComponent<Board>().cards;
+        int num = Random.Range(0, 2);
+        Transform card = Instantiate(cards[num], GetComponent<RectTransform>().anchoredPosition, Quaternion.identity);
+        card.transform.SetParent(transform.parent, false);
     }
 }

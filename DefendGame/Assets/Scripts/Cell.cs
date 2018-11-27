@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-
+    public GameObject board;
     public int speed;
-    public int tag;
+    public int life;
+    public int score;
     public Transform prefab;
     // Use this for initialization
     void Start()
@@ -17,6 +18,11 @@ public class Cell : MonoBehaviour
     void Update()
     {
         moveLeft();
+        if (life < 0)
+        {
+            Destroy(gameObject);
+            board.GetComponent<Board>().score += score;
+        }
     }
 
     void moveLeft()
@@ -40,4 +46,6 @@ public class Cell : MonoBehaviour
             return false;
         return transform.position == c.transform.position && speed == c.speed && tag == c.tag;
     }
+
+    
 }

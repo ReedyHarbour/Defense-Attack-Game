@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4820958464564692}
   - component: {fileID: 212424390892044846}
+  - component: {fileID: 114905214401249284}
   m_Layer: 0
   m_Name: circle
   m_TagString: Untagged
@@ -40,6 +41,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114905214401249284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377609890807918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b162220e28b510c4aac51ab0ccd31a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virus:
+  - {fileID: 1637055577358502, guid: def681d2cd827434080fd88ab3c48b8b, type: 2}
+  - {fileID: 1937665245990024, guid: c02c508df7bc67949a90be5e0076036a, type: 2}
+  - {fileID: 1004988008193308, guid: e604c7c252c89da4d8f1008d1397f723, type: 2}
+  canvas: {fileID: 0}
 --- !u!212 &212424390892044846
 SpriteRenderer:
   m_ObjectHideFlags: 1
