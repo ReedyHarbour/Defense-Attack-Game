@@ -5,23 +5,19 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     public GameObject board;
-    public int speed;
+    public float speed;
     public int life;
     public int score;
-    public Transform prefab;
-    // Use this for initialization
-    void Start()
-    {
-    }
+    Board s;
 
     // Update is called once per frame
     void Update()
     {
         moveLeft();
-        if (life < 0)
+        if (life <= 0)
         {
             Destroy(gameObject);
-            board.GetComponent<Board>().score += score;
+            Board.score += score;
         }
     }
 
@@ -30,22 +26,13 @@ public class Cell : MonoBehaviour
         transform.position = new Vector2(transform.position.x-speed, transform.position.y);
     }
 
-    public override bool Equals(System.Object obj)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (obj == null)
-            return false;
-        Cell c = obj as Cell;
-        if ((System.Object)c == null)
-            return false;
-        return transform.position == c.transform.position && speed == c.speed && tag == c.tag;
+        if (other.transform.tag == "Card")
+        {
+            life--;
+        }
     }
 
-    public bool Equals(Cell c)
-    {
-        if ((object)c == null)
-            return false;
-        return transform.position == c.transform.position && speed == c.speed && tag == c.tag;
-    }
 
-    
 }

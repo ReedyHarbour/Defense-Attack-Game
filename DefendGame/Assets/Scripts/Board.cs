@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Board : MonoBehaviour {
     public GameObject[] card_generator = new GameObject[6];
-    public bool[] has_card = new bool[6];
+    public static bool[] has_card = new bool[6];
     public int[][] card_coolDown = new int[4][];
     
 
-    public Transform[] cards = new Transform[2];
+    public Transform[] cards = new Transform[6];
 
     public GameObject[] virus_generator = new GameObject[6];
 
-    public int numOfCards = 6;
+    public static int numOfCards;
 
-    public int coins = 20;
-    public int score = 0;
+    public static int coins = 20;
+    public static int score = 0;
 
+    public bool gameOver = false;
+    public GUIText text;
+    public GameObject panel;
     enum Card_Type
     {
         Account = 0,
@@ -34,6 +38,7 @@ public class Board : MonoBehaviour {
 
 
     void Start () {
+        numOfCards = 6;
         for (int i = 0; i < has_card.Length; i++) {
             has_card[i] = true;
         }
@@ -49,7 +54,15 @@ public class Board : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-    
+        if (gameOver)
+        {
+            text.gameObject.SetActive(true);
+        }
+        else
+        {
+            //Transform[] c = panel.GetComponentsInChildren<Transform>();
+            //numOfCards = c.Length;
+        }
     }
 
     int getIndex()
@@ -65,22 +78,25 @@ public class Board : MonoBehaviour {
 
     IEnumerator UpdateCards()
     {
-        while (numOfCards < 6)
+        while (true)
         {
-            int i = getIndex();
-            Debug.Log(i);
-            yield return new WaitForSeconds(4f);
-            card_generator[i].GetComponent<Generate>().generateCard();
-            has_card[i] = true;
-            numOfCards++;
+            yield return new WaitForSeconds(1f);
+            if (numOfCards < 6)
+            {
+                int i = getIndex();
+                card_generator[i].GetComponent<Generate>().generateCard();
+                has_card[i] = true;
+                numOfCards++;
+            }
         }
+
     }
 
     IEnumerator Repeat() {
-        while (true) {
+        while (!gameOver) {
             int virus_pos = Random.Range(0, 6);
             int t = Random.Range(0, 10); // virus type
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
             int index;
             if (t < 6) {
                 index = 0;

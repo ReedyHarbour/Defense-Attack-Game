@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisplayScore : MonoBehaviour {
-    public GameObject board;
 	// Use this for initialization
 	void Start () {
         GetComponent<UnityEngine.UI.Text>().text = "Score: ";
@@ -11,6 +10,6 @@ public class DisplayScore : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<UnityEngine.UI.Text>().text = "Score: " + board.GetComponent<Board>().score.ToString();
+        GetComponent<UnityEngine.UI.Text>().text = "Score: " + Board.score.ToString();
     }
 }

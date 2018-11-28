@@ -4,18 +4,26 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-    public GameObject board;
     public GameObject curr;
 
     Vector2 startPos;
     Transform parent;
+    bool dragged = false;
+    int index;
+    void Update()
+    {
+        if (dragged) return;
+    }
 
     public void OnBeginDrag(PointerEventData data)
     {
-        curr = gameObject;
-        startPos = transform.position;
-        parent = transform.parent.parent;
-        // GetComponent<CanvasGroup>().blocksRaycasts = false;
+        if (!dragged)
+        {
+            curr = gameObject;
+            startPos = transform.position;
+            parent = transform.parent.parent;
+            index = int.Parse(transform.parent.tag[3].ToString());
+        }
     }
 
     public void OnDrag(PointerEventData data)
@@ -25,9 +33,6 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData data)
     {
-        curr = null;
-        Debug.Log(transform.parent.parent);
-        Debug.Log(parent);
         if (transform.parent.parent == parent)
         {
             transform.position = startPos;
@@ -36,11 +41,14 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         else
         {
             transform.position = transform.parent.position;
-            board.GetComponent<Board>().numOfCards--;
-            int coins = curr.GetComponent<Brick>().defaultLife;
-            board.GetComponent<Board>().coins -= coins;
+            Board.numOfCards--;
+            Board.has_card[index-1] = false;
+            int coins = curr.GetComponent<Brick>().coins;
+            Board.coins -= coins;
+            dragged = true;
         }
-        
+        curr = null;
+
     }
     
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IDropHandler {
-    public Canvas canvas;
 
     public GameObject item {
         get
@@ -22,7 +21,6 @@ public class Slot : MonoBehaviour, IDropHandler {
         if (!item)
         {
             data.pointerDrag.transform.SetParent(transform);
-            canvas.GetComponent<Board>().numOfCards--;
         }
     }
 

@@ -10,7 +10,6 @@ public class Brick : MonoBehaviour {
     public int life;
     public int defaultLife;
     public int coins;
-    public int coolDown;
     void Start () {
         defaultLife = life;
     }
@@ -24,14 +23,12 @@ public class Brick : MonoBehaviour {
     {
         if (other.transform.tag == "virus")
         {
-            Debug.Log("entered");
-            other.gameObject.GetComponent<Cell>().life--;
             life--;
         }
         if (life <= 0)
         {
             Destroy(gameObject);
-        } 
+        }
     }
 
 }
