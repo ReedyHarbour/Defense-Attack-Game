@@ -10,7 +10,7 @@ public class Generate : MonoBehaviour {
     }
     public void generateCard()
     {
-        int num = Random.Range(0, 6);
+        int num = Random.Range(0, 15);
         Transform card = Instantiate(board.GetComponent<Board>().cards[num], GetComponent<RectTransform>().anchoredPosition, Quaternion.identity);
         card.transform.SetParent(transform.parent, false);
     }

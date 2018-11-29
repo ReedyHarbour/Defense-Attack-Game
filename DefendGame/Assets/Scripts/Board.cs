@@ -7,9 +7,9 @@ public class Board : MonoBehaviour {
     public GameObject[] card_generator = new GameObject[6];
     public static bool[] has_card = new bool[6];
     public int[][] card_coolDown = new int[4][];
-    
+    public GameObject[] descriptions = new GameObject[15];
 
-    public Transform[] cards = new Transform[6];
+    public Transform[] cards = new Transform[15];
 
     public GameObject[] virus_generator = new GameObject[6];
 

@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
     public GameObject curr;
-
-    Vector2 startPos;
-    Transform parent;
+    Vector3 startPos;
+    Transform oldparent;
     bool dragged = false;
+    public bool indrag = false;
     int index;
     void Update()
     {
@@ -17,37 +17,60 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData data)
     {
+        indrag = true;
         if (!dragged)
         {
             curr = gameObject;
             startPos = transform.position;
-            parent = transform.parent.parent;
+            
+            oldparent = transform.parent;
             index = int.Parse(transform.parent.tag[3].ToString());
         }
     }
 
     public void OnDrag(PointerEventData data)
     {
-        transform.position = Input.mousePosition;
+        indrag = true;
+        if (!dragged)
+        {
+            transform.position = Input.mousePosition;
+        }
+    }
+
+    public bool canPlacePos(string tag)
+    {
+        if (!tag.StartsWith("Row")) return false;
+        int index = int.Parse(transform.parent.tag[3].ToString());
+        if (GetComponent<Brick>().canPlace[index-1])
+        {
+            return true;
+        }
+        return false;
     }
 
     public void OnEndDrag(PointerEventData data)
     {
-        if (transform.parent.parent == parent)
+        indrag = false;
+        if (dragged) return;
+        if (!canPlacePos(transform.parent.tag))
         {
             transform.position = startPos;
-            // GetComponent<CanvasGroup>().blocksRaycasts = true;
+            transform.SetParent(oldparent);
         }
         else
         {
-            transform.position = transform.parent.position;
-            Board.numOfCards--;
-            Board.has_card[index-1] = false;
-            int coins = curr.GetComponent<Brick>().coins;
-            Board.coins -= coins;
-            dragged = true;
+            if (canPlacePos(transform.parent.tag))
+            {
+                transform.position = transform.parent.position;
+                Board.numOfCards--;
+                Board.has_card[index - 1] = false;
+                int coins = curr.GetComponent<Brick>().coins;
+                Board.coins -= coins;
+                dragged = true;
+            }
+            curr = null;
         }
-        curr = null;
+
 
     }
     

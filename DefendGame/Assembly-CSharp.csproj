@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\DisplayScore.cs" />
     <Compile Include="Assets\Scripts\DragHandler.cs" />
     <Compile Include="Assets\Scripts\Generate.cs" />
+    <Compile Include="Assets\Scripts\mouseHover.cs" />
     <Compile Include="Assets\Scripts\Slot.cs" />
     <Compile Include="Assets\Scripts\VirusPos.cs" />
     <None Include="Assets\Images\virus\source.txt" />

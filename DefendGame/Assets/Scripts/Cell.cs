@@ -8,6 +8,7 @@ public class Cell : MonoBehaviour
     public float speed;
     public int life;
     public int score;
+    public int add_coins;
     Board s;
 
     // Update is called once per frame
@@ -18,6 +19,7 @@ public class Cell : MonoBehaviour
         {
             Destroy(gameObject);
             Board.score += score;
+            Board.coins += add_coins;
         }
     }
 
@@ -28,7 +30,7 @@ public class Cell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag == "Card")
+        if (!other.GetComponent<DragHandler>().indrag && other.transform.tag == "Card")
         {
             life--;
         }
