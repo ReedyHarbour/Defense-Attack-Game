@@ -9,22 +9,22 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1809818814666598}
+  m_RootGameObject: {fileID: 1238017729086972}
   m_IsPrefabAsset: 1
---- !u!1 &1809818814666598
+--- !u!1 &1238017729086972
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 224205695678788720}
-  - component: {fileID: 222052890247784238}
-  - component: {fileID: 114855078873517198}
-  - component: {fileID: 61403721658521156}
-  - component: {fileID: 114223569422825392}
-  - component: {fileID: 114051505714949842}
-  - component: {fileID: 114122158299182204}
+  - component: {fileID: 224940502494519358}
+  - component: {fileID: 222325504305307394}
+  - component: {fileID: 114640297827900404}
+  - component: {fileID: 61540317457767860}
+  - component: {fileID: 114727991966157036}
+  - component: {fileID: 114800158602116938}
+  - component: {fileID: 114104218754323198}
   m_Layer: 10
   m_Name: Firewall
   m_TagString: Card
@@ -32,12 +32,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61403721658521156
+--- !u!61 &61540317457767860
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
+  m_GameObject: {fileID: 1238017729086972}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -55,31 +55,14 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40, y: 40}
+  m_Size: {x: 50, y: 40}
   m_EdgeRadius: 0
---- !u!114 &114051505714949842
+--- !u!114 &114104218754323198
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ba263cd8948424e826bfbb07be70ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  name: Firewall Update
-  life: 5
-  defaultLife: 5
-  coins: 6
-  canPlace: 01000001000001
---- !u!114 &114122158299182204
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
+  m_GameObject: {fileID: 1238017729086972}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3870d1b4147c614598c078a9f7aca16, type: 3}
@@ -87,25 +70,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 4
   canvas: {fileID: 0}
---- !u!114 &114223569422825392
+--- !u!114 &114640297827900404
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5392ec24bdb8e428ea74c8e5740b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curr: {fileID: 0}
-  indrag: 0
---- !u!114 &114855078873517198
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
+  m_GameObject: {fileID: 1238017729086972}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -127,19 +97,49 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222052890247784238
+--- !u!114 &114727991966157036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238017729086972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5392ec24bdb8e428ea74c8e5740b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curr: {fileID: 0}
+  indrag: 0
+--- !u!114 &114800158602116938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238017729086972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ba263cd8948424e826bfbb07be70ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  name: Firewall Update
+  life: 5
+  defaultLife: 5
+  coins: 6
+  canPlace: 01000001000001
+--- !u!222 &222325504305307394
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
+  m_GameObject: {fileID: 1238017729086972}
   m_CullTransparentMesh: 0
---- !u!224 &224205695678788720
+--- !u!224 &224940502494519358
 RectTransform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809818814666598}
+  m_GameObject: {fileID: 1238017729086972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
@@ -150,5 +150,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 40}
+  m_SizeDelta: {x: 60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}

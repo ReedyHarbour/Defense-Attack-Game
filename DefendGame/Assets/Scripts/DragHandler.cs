@@ -12,11 +12,11 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     int index;
     void Update()
     {
-        if (dragged) return;
     }
 
     public void OnBeginDrag(PointerEventData data)
     {
+        if (Board.gameOver) return;
         indrag = true;
         if (!dragged)
         {
@@ -30,6 +30,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData data)
     {
+        if (Board.gameOver) return;
         indrag = true;
         if (!dragged)
         {
@@ -50,6 +51,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData data)
     {
+        if (Board.gameOver) return;
         indrag = false;
         if (dragged) return;
         if (!canPlacePos(transform.parent.tag))

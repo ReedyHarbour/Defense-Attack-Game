@@ -9,22 +9,22 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1204634117506186}
+  m_RootGameObject: {fileID: 1363529070845230}
   m_IsPrefabAsset: 1
---- !u!1 &1204634117506186
+--- !u!1 &1363529070845230
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 224721311555410968}
-  - component: {fileID: 222463006135437006}
-  - component: {fileID: 114945081230389864}
-  - component: {fileID: 114984828593306320}
-  - component: {fileID: 61751896300211456}
-  - component: {fileID: 114142267834628176}
-  - component: {fileID: 114699164535490102}
+  - component: {fileID: 224516612258440722}
+  - component: {fileID: 222925240168600948}
+  - component: {fileID: 114114635929117076}
+  - component: {fileID: 114700652221898098}
+  - component: {fileID: 61083418311735982}
+  - component: {fileID: 114599912154542488}
+  - component: {fileID: 114559347771569634}
   m_Layer: 10
   m_Name: TOTP
   m_TagString: Card
@@ -32,12 +32,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61751896300211456
+--- !u!61 &61083418311735982
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
+  m_GameObject: {fileID: 1363529070845230}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -55,44 +55,14 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40, y: 40}
+  m_Size: {x: 50, y: 40}
   m_EdgeRadius: 0
---- !u!114 &114142267834628176
+--- !u!114 &114114635929117076
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ba263cd8948424e826bfbb07be70ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  name: Authenticator App (TOTP)
-  life: 2
-  defaultLife: 2
-  coins: 1
-  canPlace: 00000000000000
---- !u!114 &114699164535490102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3870d1b4147c614598c078a9f7aca16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 2
-  canvas: {fileID: 0}
---- !u!114 &114945081230389864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
+  m_GameObject: {fileID: 1363529070845230}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -114,12 +84,42 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114984828593306320
+--- !u!114 &114559347771569634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
+  m_GameObject: {fileID: 1363529070845230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3870d1b4147c614598c078a9f7aca16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  canvas: {fileID: 1654764339400876, guid: 7d276e397273d744fa306cfb0ffc1a07, type: 2}
+--- !u!114 &114599912154542488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363529070845230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ba263cd8948424e826bfbb07be70ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  name: Authenticator App (TOTP)
+  life: 2
+  defaultLife: 2
+  coins: 1
+  canPlace: 00010100000000
+--- !u!114 &114700652221898098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363529070845230}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d5392ec24bdb8e428ea74c8e5740b6e, type: 3}
@@ -127,19 +127,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curr: {fileID: 0}
   indrag: 0
---- !u!222 &222463006135437006
+--- !u!222 &222925240168600948
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
+  m_GameObject: {fileID: 1363529070845230}
   m_CullTransparentMesh: 0
---- !u!224 &224721311555410968
+--- !u!224 &224516612258440722
 RectTransform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1204634117506186}
+  m_GameObject: {fileID: 1363529070845230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
@@ -150,5 +150,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 40}
+  m_SizeDelta: {x: 60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}

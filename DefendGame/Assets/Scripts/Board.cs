@@ -15,12 +15,17 @@ public class Board : MonoBehaviour {
 
     public static int numOfCards;
 
-    public static int coins = 20;
+    public static int coins = 30;
     public static int score = 0;
 
-    public bool gameOver = false;
-    public GUIText text;
+    public static bool gameOver = false;
+    public GameObject text;
     public GameObject panel;
+
+    public static bool hasEnded = false;
+    float startTime;
+    public static bool accelerate;
+    public static bool accelerated;
     enum Card_Type
     {
         Account = 0,
@@ -38,6 +43,7 @@ public class Board : MonoBehaviour {
 
 
     void Start () {
+        startTime = Time.time;
         numOfCards = 6;
         for (int i = 0; i < has_card.Length; i++) {
             has_card[i] = true;
@@ -51,17 +57,27 @@ public class Board : MonoBehaviour {
         StartCoroutine(Repeat());
         StartCoroutine(UpdateCards());
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (gameOver)
+
+
+    // Update is called once per frame
+    void Update () {
+        if (gameOver && !hasEnded)
         {
-            text.gameObject.SetActive(true);
+            // text.gameObject.SetActive(true);
+            SceneManager.LoadScene("GameOver");
+            gameOver = false;
+            hasEnded = true;
         }
         else
         {
-            //Transform[] c = panel.GetComponentsInChildren<Transform>();
-            //numOfCards = c.Length;
+            if (coins < 0)
+            {
+                gameOver = true;
+            }
+            if (Time.time - startTime > 20 && !accelerated)
+            {
+                accelerate = true;
+            }
         }
     }
 
@@ -78,7 +94,7 @@ public class Board : MonoBehaviour {
 
     IEnumerator UpdateCards()
     {
-        while (true)
+        while (!gameOver)
         {
             yield return new WaitForSeconds(1f);
             if (numOfCards < 6)
