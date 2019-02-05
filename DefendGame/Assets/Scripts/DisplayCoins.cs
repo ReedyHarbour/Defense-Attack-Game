@@ -6,7 +6,7 @@ public class DisplayCoins : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        GetComponent<UnityEngine.UI.Text>().text = "Coins: ";
+        GetComponent<UnityEngine.UI.Text>().text = "Coins $: ";
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Brick : MonoBehaviour {
 
@@ -10,9 +11,11 @@ public class Brick : MonoBehaviour {
     public int life;
     public int defaultLife;
     public int coins;
+
     public bool[] canPlace = new bool[7];
     void Start () {
         defaultLife = life;
+
     }
 	
 	// Update is called once per frame
@@ -25,7 +28,8 @@ public class Brick : MonoBehaviour {
         if (!GetComponent<DragHandler>().indrag && other.transform.tag == "virus")
         {
             life--;
-            // GetComponent<Color>() = new Color(255, 255, 255, 255/2);
+            GetComponent<Image>().color = new Color(1,1,1,(float)life/defaultLife);
+            Debug.Log(GetComponent<Image>().color);
         }
         if (life <= 0)
         {

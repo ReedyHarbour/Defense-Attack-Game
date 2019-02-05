@@ -8,14 +8,14 @@ public class Board : MonoBehaviour {
     public static bool[] has_card = new bool[6];
     public int[][] card_coolDown = new int[4][];
     public GameObject[] descriptions = new GameObject[15];
-
+    public bool[] dragTrials = new bool[3];
     public Transform[] cards = new Transform[15];
-
+    public static int startMode;
     public GameObject[] virus_generator = new GameObject[6];
-
+    Scene currentScene;
     public static int numOfCards;
 
-    public static int coins = 30;
+    public static int coins = 50;
     public static int score = 0;
 
     public static bool gameOver = false;
@@ -26,23 +26,18 @@ public class Board : MonoBehaviour {
     float startTime;
     public static bool accelerate;
     public static bool accelerated;
-    enum Card_Type
-    {
-        Account = 0,
-        Action = 1,
-        Browser = 2,
-        Local = 3
-    }
+    public static bool reduce;
+    public static bool reduced;
 
-    enum Virus_Type
-    {
-        regu = 0,
-        strong = 1,
-        hidden = 2
-    }
+    public AudioClip loseSound;
+    private AudioSource source;
 
-
+    public static bool changeScene;
     void Start () {
+        currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "Tutorial") startMode = 0;
+        if (currentScene.name == "Slow") startMode = 1;
+        if (currentScene.name == "Main") startMode = 2;
         startTime = Time.time;
         numOfCards = 6;
         for (int i = 0; i < has_card.Length; i++) {
@@ -53,7 +48,7 @@ public class Board : MonoBehaviour {
         card_coolDown[1] = new int[5];
         card_coolDown[2] = new int[4];
         card_coolDown[3] = new int[2];
-
+        source = GetComponent<AudioSource>();
         StartCoroutine(Repeat());
         StartCoroutine(UpdateCards());
     }
@@ -63,8 +58,10 @@ public class Board : MonoBehaviour {
     void Update () {
         if (gameOver && !hasEnded)
         {
-            // text.gameObject.SetActive(true);
-            SceneManager.LoadScene("GameOver");
+            source.PlayOneShot(loseSound);
+            // yield new WaitForSeconds(3.0f);
+            changeScene = true;
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
             gameOver = false;
             hasEnded = true;
         }
@@ -74,9 +71,28 @@ public class Board : MonoBehaviour {
             {
                 gameOver = true;
             }
-            if (Time.time - startTime > 20 && !accelerated)
+            if (startMode == 2)
             {
-                accelerate = true;
+                reduced = true;
+                reduce = true;
+                if (Time.time - startTime > 30 && !accelerated)
+                {
+                    accelerate = true;
+                    accelerated = true;
+                }
+            }
+            else if (startMode == 0 || startMode == 1)
+            {
+                if (Time.time - startTime > 20 && !reduced)
+                {
+                    reduced = true;
+                    reduce = true;
+                }
+                if (Time.time - startTime > 40 && !accelerated)
+                {
+                    accelerate = true;
+                    accelerated = true;
+                }
             }
         }
     }
@@ -96,13 +112,28 @@ public class Board : MonoBehaviour {
     {
         while (!gameOver)
         {
-            yield return new WaitForSeconds(1f);
-            if (numOfCards < 6)
+            // if (GetComponent<HandleText>().paused) continue;
+            // if (GetComponent<HandleText>().paused) yield break;
+            yield return new WaitForSeconds(0.1f);
+            if (!GetComponent<HandleText>().paused)
             {
-                int i = getIndex();
-                card_generator[i].GetComponent<Generate>().generateCard();
-                has_card[i] = true;
-                numOfCards++;
+                if (numOfCards < 6)
+                {
+                    int i = getIndex();
+                    card_generator[i].GetComponent<Generate>().generateCard();
+                    has_card[i] = true;
+                    numOfCards++;
+                    if (!dragTrials[0])
+                    {
+                        dragTrials[0] = true;
+                    }
+                    else if (!dragTrials[1])
+                    {
+                        dragTrials[1] = true;
+                    }
+                }
+                //if (!GetComponent<HandleText>().paused;
+                //else yield return null;
             }
         }
 
@@ -113,17 +144,23 @@ public class Board : MonoBehaviour {
             int virus_pos = Random.Range(0, 6);
             int t = Random.Range(0, 10); // virus type
             yield return new WaitForSeconds(4f);
-            int index;
-            if (t < 6) {
-                index = 0;
+            if (!GetComponent<HandleText>().paused)
+            {
+                int index;
+                if (t < 6)
+                {
+                    index = 0;
+                }
+                else if (t < 8)
+                {
+                    index = 1;
+                }
+                else
+                {
+                    index = 2;
+                }
+                virus_generator[virus_pos].GetComponent<VirusPos>().generateVirus(index);
             }
-            else if (t < 8) {
-                index = 1;
-            }
-            else {
-                index = 2;
-            }
-            virus_generator[virus_pos].GetComponent<VirusPos>().generateVirus(index);
         }
 
     }

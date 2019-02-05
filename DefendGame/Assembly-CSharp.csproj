@@ -63,15 +63,23 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Brick.cs" />
+    <Compile Include="Assets\Scripts\ButtonNext.cs" />
+    <Compile Include="Assets\Scripts\ButtonSlow.cs" />
+    <Compile Include="Assets\Scripts\ButtonTutorial.cs" />
     <Compile Include="Assets\Scripts\Cell.cs" />
     <Compile Include="Assets\Scripts\Control.cs" />
+    <Compile Include="Assets\Scripts\ControlScripts.cs" />
     <Compile Include="Assets\Scripts\DisplayCoins.cs" />
     <Compile Include="Assets\Scripts\DisplayScore.cs" />
     <Compile Include="Assets\Scripts\DragHandler.cs" />
     <Compile Include="Assets\Scripts\Generate.cs" />
+    <Compile Include="Assets\Scripts\HandleText.cs" />
+    <Compile Include="Assets\Scripts\Invisible.cs" />
     <Compile Include="Assets\Scripts\mouseHover.cs" />
+    <Compile Include="Assets\Scripts\Music.cs" />
     <Compile Include="Assets\Scripts\Slot.cs" />
     <Compile Include="Assets\Scripts\VirusPos.cs" />
+    <None Include="Assets\Assets\Images\virus\source.txt" />
     <None Include="Assets\Images\virus\source.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/CMU/Defense-Attack-Game/DefendGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

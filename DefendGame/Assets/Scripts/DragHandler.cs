@@ -2,17 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
     public GameObject curr;
     Vector3 startPos;
     Transform oldparent;
-    bool dragged = false;
+    public GameObject[] positions = new GameObject[7];
+    public bool dragged = false;
     public bool indrag = false;
     int index;
-    void Update()
+
+    public AudioClip dragSound;
+    private AudioSource source;
+
+    private static int CompareList(GameObject i1, GameObject i2)
     {
+        return System.String.Compare(i1.name, i2.name);
     }
+
+    void Start()
+    {
+        positions = GameObject.FindGameObjectsWithTag("Row");
+        System.Array.Sort(positions, CompareList);
+        // dragSound = GameObject.Find("drag");
+        source = GetComponent<AudioSource>();
+        // source.PlayOneShot(dragSound.GetComponent<AudioClip>(), 0.8f);
+    }
+
 
     public void OnBeginDrag(PointerEventData data)
     {
@@ -34,8 +51,26 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         indrag = true;
         if (!dragged)
         {
+            highlightPos(true);
             transform.position = Input.mousePosition;
         }
+    }
+
+    public void highlightPos(bool change)
+    {
+        bool[] L = GetComponent<Brick>().canPlace;
+        for (int i = 0; i < 7; i++)
+        {
+            if (L[i])
+            {
+                // positions[i].SetActive(change);
+                Color c = positions[i].GetComponent<Image>().color;
+                if (change) c.a = 0.5f;
+                else c.a = 0;
+                positions[i].GetComponent<Image>().color = c;
+            }
+        }
+
     }
 
     public bool canPlacePos(string tag)
@@ -53,27 +88,28 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (Board.gameOver) return;
         indrag = false;
-        if (dragged) return;
-        if (!canPlacePos(transform.parent.tag))
+        // if (dragged) return;
+        highlightPos(false);
+        if (transform.tag != "Card" || !canPlacePos(transform.parent.tag))
         {
             transform.position = startPos;
             transform.SetParent(oldparent);
+            source.PlayOneShot(dragSound, 0.8f);
         }
         else
         {
-            if (canPlacePos(transform.parent.tag))
-            {
+            //if (canPlacePos(transform.parent.tag))
+            //{
                 transform.position = transform.parent.position;
                 Board.numOfCards--;
                 Board.has_card[index - 1] = false;
                 int coins = curr.GetComponent<Brick>().coins;
                 Board.coins -= coins;
                 dragged = true;
-            }
+            //}
             curr = null;
         }
-
-
+        
     }
     
 }
