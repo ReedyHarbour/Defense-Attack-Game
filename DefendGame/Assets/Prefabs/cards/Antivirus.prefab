@@ -289,6 +289,7 @@ MonoBehaviour:
   dragged: 0
   indrag: 0
   dragSound: {fileID: 8300000, guid: f16ffeace3dbc014590530910386a62b, type: 3}
+  coinSound: {fileID: 8300000, guid: c09fdc8dd419f754898eabec0cbf4649, type: 3}
 --- !u!114 &114598968932010154
 MonoBehaviour:
   m_ObjectHideFlags: 1

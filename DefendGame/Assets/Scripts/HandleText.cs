@@ -8,7 +8,7 @@ public class HandleText : MonoBehaviour {
     public GameObject mouse;
     public GameObject warningText;
     public GameObject continueText;
-    public bool paused = false;
+    public static bool paused = false;
     // Use this for initialization
     float startTime;
     float elapsedTime;

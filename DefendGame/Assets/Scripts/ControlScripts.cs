@@ -11,7 +11,6 @@ public class ControlScripts : MonoBehaviour {
         Debug.Log("OnSceneLoaded: " + scene.name);
         int num = Random.Range(0, 10);
         quote.GetComponent<UnityEngine.UI.Text>().text = quotes[num];
-        Debug.Log("called");
     }
 
     void Start () {

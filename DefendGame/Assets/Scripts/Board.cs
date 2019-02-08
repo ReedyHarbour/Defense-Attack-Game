@@ -115,7 +115,7 @@ public class Board : MonoBehaviour {
             // if (GetComponent<HandleText>().paused) continue;
             // if (GetComponent<HandleText>().paused) yield break;
             yield return new WaitForSeconds(0.1f);
-            if (!GetComponent<HandleText>().paused)
+            if (!HandleText.paused)
             {
                 if (numOfCards < 6)
                 {
@@ -144,7 +144,7 @@ public class Board : MonoBehaviour {
             int virus_pos = Random.Range(0, 6);
             int t = Random.Range(0, 10); // virus type
             yield return new WaitForSeconds(4f);
-            if (!GetComponent<HandleText>().paused)
+            if (!HandleText.paused)
             {
                 int index;
                 if (t < 6)

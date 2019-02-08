@@ -14,6 +14,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     int index;
 
     public AudioClip dragSound;
+    public AudioClip coinSound;
     private AudioSource source;
 
     private static int CompareList(GameObject i1, GameObject i2)
@@ -34,9 +35,9 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnBeginDrag(PointerEventData data)
     {
         if (Board.gameOver) return;
-        indrag = true;
         if (!dragged)
         {
+            indrag = true;
             curr = gameObject;
             startPos = transform.position;
             
@@ -48,9 +49,10 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnDrag(PointerEventData data)
     {
         if (Board.gameOver) return;
-        indrag = true;
+        
         if (!dragged)
         {
+            indrag = true;
             highlightPos(true);
             transform.position = Input.mousePosition;
         }
@@ -88,7 +90,6 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (Board.gameOver) return;
         indrag = false;
-        // if (dragged) return;
         highlightPos(false);
         if (transform.tag != "Card" || !canPlacePos(transform.parent.tag))
         {
@@ -105,6 +106,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 Board.has_card[index - 1] = false;
                 int coins = curr.GetComponent<Brick>().coins;
                 Board.coins -= coins;
+                source.PlayOneShot(coinSound, 0.8f);
                 dragged = true;
             //}
             curr = null;

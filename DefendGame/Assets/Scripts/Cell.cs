@@ -27,7 +27,7 @@ public class Cell : MonoBehaviour
     void Update()
     {
         if (Board.gameOver) return;
-        if (!board.GetComponent<HandleText>().paused) moveLeft();
+        if (!HandleText.paused) moveLeft();
         
     }
 
