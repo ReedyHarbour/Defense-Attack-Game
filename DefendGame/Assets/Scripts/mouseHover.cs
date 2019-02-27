@@ -9,7 +9,7 @@ public class mouseHover : MonoBehaviour {
     GameObject Description;
     private void Start()
     {
-        canvas = GetComponentInParent<Canvas>();
+        // canvas = GetComponentInParent<Canvas>();
         Description = canvas.GetComponent<Board>().descriptions[index];
     }
     void OnMouseOver()

@@ -61,15 +61,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\dreamlo\dreamloLeaderBoard.cs" />
+    <Compile Include="Assets\dreamlo\dreamloPromoCode.cs" />
+    <Compile Include="Assets\dreamlo\LeaderBoardSample.cs" />
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Brick.cs" />
+    <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ButtonNext.cs" />
+    <Compile Include="Assets\Scripts\ButtonQuiz.cs" />
     <Compile Include="Assets\Scripts\ButtonSlow.cs" />
     <Compile Include="Assets\Scripts\ButtonTutorial.cs" />
     <Compile Include="Assets\Scripts\Cell.cs" />
+    <Compile Include="Assets\Scripts\CoinMod.cs" />
+    <Compile Include="Assets\Scripts\CoinMod2.cs" />
+    <Compile Include="Assets\Scripts\CoinMod3.cs" />
     <Compile Include="Assets\Scripts\Control.cs" />
     <Compile Include="Assets\Scripts\ControlScripts.cs" />
     <Compile Include="Assets\Scripts\DisplayCoins.cs" />
+    <Compile Include="Assets\Scripts\DisplayQuestion.cs" />
     <Compile Include="Assets\Scripts\DisplayScore.cs" />
     <Compile Include="Assets\Scripts\DragHandler.cs" />
     <Compile Include="Assets\Scripts\Generate.cs" />
@@ -77,9 +86,13 @@
     <Compile Include="Assets\Scripts\Invisible.cs" />
     <Compile Include="Assets\Scripts\mouseHover.cs" />
     <Compile Include="Assets\Scripts\Music.cs" />
+    <Compile Include="Assets\Scripts\QuizButtonOnAndOff.cs" />
+    <Compile Include="Assets\Scripts\QuizPool.cs" />
     <Compile Include="Assets\Scripts\Slot.cs" />
+    <Compile Include="Assets\Scripts\updateScore.cs" />
     <Compile Include="Assets\Scripts\VirusPos.cs" />
-    <None Include="Assets\Assets\Images\virus\source.txt" />
+    <None Include="Assets\dreamlo\README_FIRST.txt" />
+    <None Include="Assets\Images2\virus\source.txt" />
     <None Include="Assets\Images\virus\source.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/CMU/Defense-Attack-Game/DefendGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

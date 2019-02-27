@@ -11,13 +11,15 @@ public class Cell : MonoBehaviour
     public int add_coins;
     public bool accelerated;
     public bool reduced;
-    Board s;
+
+    // Board s;
     Animator animator;
     public AudioClip deathSound;
     private AudioSource source;
 
     void Start()
     {
+
         animator = GetComponent<Animator>();
         board = GameObject.Find("Canvas");
         source = GetComponent<AudioSource>();
@@ -55,6 +57,7 @@ public class Cell : MonoBehaviour
             life--;
             if (life <= 0)
             {
+                Board.generate_virus = true;
                 animator.SetTrigger("Death");
                 source.PlayOneShot(deathSound, 0.8f);
                 Destroy(gameObject, 2);

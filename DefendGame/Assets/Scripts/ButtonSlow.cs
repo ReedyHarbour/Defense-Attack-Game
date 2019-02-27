@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ButtonSlow : MonoBehaviour {
 
+
     public void NextScene()
     {
         SceneManager.LoadScene("Slow", LoadSceneMode.Single);

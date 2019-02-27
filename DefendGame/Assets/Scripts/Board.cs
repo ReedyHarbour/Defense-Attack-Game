@@ -15,6 +15,12 @@ public class Board : MonoBehaviour {
     Scene currentScene;
     public static int numOfCards;
 
+    public static bool generate_virus = true;
+    public static float virus_time;
+    public static int count_virus = 0;
+    public static bool tutorial_complete = false;
+    public float tutorial_time;
+
     public static int coins = 50;
     public static int score = 0;
 
@@ -39,6 +45,7 @@ public class Board : MonoBehaviour {
         if (currentScene.name == "Slow") startMode = 1;
         if (currentScene.name == "Main") startMode = 2;
         startTime = Time.time;
+        virus_time = Time.time;
         numOfCards = 6;
         for (int i = 0; i < has_card.Length; i++) {
             has_card[i] = true;
@@ -61,7 +68,10 @@ public class Board : MonoBehaviour {
             source.PlayOneShot(loseSound);
             // yield new WaitForSeconds(3.0f);
             changeScene = true;
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+            if (startMode == 2)
+                SceneManager.LoadScene("LogIn", LoadSceneMode.Single);
+            else
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
             gameOver = false;
             hasEnded = true;
         }
@@ -92,6 +102,11 @@ public class Board : MonoBehaviour {
                 {
                     accelerate = true;
                     accelerated = true;
+                }
+                if (startMode == 0 && tutorial_complete)
+                {
+                	if (Time.time - tutorial_time > 2f)
+                		SceneManager.LoadScene("End", LoadSceneMode.Single);
                 }
             }
         }
@@ -140,29 +155,71 @@ public class Board : MonoBehaviour {
     }
 
     IEnumerator Repeat() {
-        while (!gameOver) {
-            int virus_pos = Random.Range(0, 6);
-            int t = Random.Range(0, 10); // virus type
-            yield return new WaitForSeconds(4f);
-            if (!HandleText.paused)
+        while (!gameOver)
+            if (startMode == 0)
             {
-                int index;
-                if (t < 6)
+                int virus_pos = 0;
+                int index = 0;
+                if (count_virus < 1)
                 {
+                    virus_pos = 1;
                     index = 0;
                 }
-                else if (t < 8)
+                else if (count_virus < 2)
                 {
+                    virus_pos = 4;
+                    index = 0;
+                }
+                else if (count_virus < 3)
+                {
+                    virus_pos = 3;
                     index = 1;
                 }
-                else
+                else if (count_virus < 4)
                 {
+                    virus_pos = 5;
                     index = 2;
                 }
-                virus_generator[virus_pos].GetComponent<VirusPos>().generateVirus(index);
+                else if (count_virus > 4 && count_virus <= 5)
+                {
+                	tutorial_complete = true;
+                	tutorial_time = Time.time;
+                }
+
+                yield return new WaitForSeconds(4f);
+                if (!HandleText.paused && generate_virus && count_virus < 5)
+                {
+                	count_virus++;
+                	if (count_virus < 5)
+                	{
+	                    virus_generator[virus_pos].GetComponent<VirusPos>().generateVirus(index);
+	                    generate_virus = false;
+	                    virus_time = Time.time;
+	                }
+                }
             }
+            else
+            { 
+                int virus_pos = Random.Range(0, 6);
+                int t = Random.Range(0, 10); // virus type
+                yield return new WaitForSeconds(4f);
+                if (!HandleText.paused)
+                {
+                    int index;
+                    if (t < 6)
+                    {
+                        index = 0;
+                    }
+                    else if (t < 8)
+                    {
+                        index = 1;
+                    }
+                    else
+                    {
+                        index = 2;
+                    }
+                    virus_generator[virus_pos].GetComponent<VirusPos>().generateVirus(index);
+                }
+             }
         }
-
     }
-
-}
