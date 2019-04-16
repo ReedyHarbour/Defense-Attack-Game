@@ -18,7 +18,7 @@ public class QuizButtonOnAndOff : MonoBehaviour {
 
 	void Update () {
 		elapsedTime = Time.time - startTime;
-		if (((int) elapsedTime != 0) && ((int) elapsedTime) % 20 == 0) {
+		if (((int) elapsedTime != 0) && ((int) elapsedTime) % 15 == 0) {
 			ButtonQuiz.SetActive(true);
 		}
 	}

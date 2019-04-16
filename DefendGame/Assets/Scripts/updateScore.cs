@@ -7,9 +7,7 @@ public class updateScore : MonoBehaviour {
     private string url = "http://dreamlo.com/lb/o7YH_9SaSUayxHGKi6fDQgSmHC_qgUxkCpBTcmr3MsDQ";
     string dreamloWebserviceURL = "http://dreamlo.com/lb/";
     // List<dreamloLeaderBoard.Score> scoreList;
-    string highScores = "";
     dreamloLeaderBoard dl;
-    int totalScore = 0;
     bool save;
     public Text displayText;
     // Use this for initialization
@@ -28,7 +26,6 @@ public class updateScore : MonoBehaviour {
         // get the reference here...
         this.dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
         //scoreList = dl.ToListHighToLow();
-        totalScore = Board.score;
     }
 
     void OnGUI()

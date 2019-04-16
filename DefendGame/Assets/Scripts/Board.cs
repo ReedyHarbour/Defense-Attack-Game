@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Board : MonoBehaviour {
     public GameObject[] card_generator = new GameObject[6];
@@ -12,6 +13,7 @@ public class Board : MonoBehaviour {
     public Transform[] cards = new Transform[15];
     public static int startMode;
     public GameObject[] virus_generator = new GameObject[6];
+    public GameObject[] nameTag = new GameObject[6];
     Scene currentScene;
     public static int numOfCards;
 
@@ -68,7 +70,7 @@ public class Board : MonoBehaviour {
             source.PlayOneShot(loseSound);
             // yield new WaitForSeconds(3.0f);
             changeScene = true;
-            if (startMode == 2)
+            if (startMode == 2 && checkToggle.isOn)
                 SceneManager.LoadScene("LogIn", LoadSceneMode.Single);
             else
                 SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
@@ -111,6 +113,10 @@ public class Board : MonoBehaviour {
             }
         }
     }
+    string getName(int num)
+    {
+        return cards[num].name;
+    }    
 
     int getIndex()
     {
@@ -135,7 +141,8 @@ public class Board : MonoBehaviour {
                 if (numOfCards < 6)
                 {
                     int i = getIndex();
-                    card_generator[i].GetComponent<Generate>().generateCard();
+                    int card_num = card_generator[i].GetComponent<Generate>().generateCard();
+                    nameTag[i].GetComponent<UnityEngine.UI.Text>().text = getName(card_num);
                     has_card[i] = true;
                     numOfCards++;
                     if (!dragTrials[0])

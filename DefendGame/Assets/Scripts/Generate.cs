@@ -8,10 +8,11 @@ public class Generate : MonoBehaviour {
     {
         board = GameObject.Find("Canvas");
     }
-    public void generateCard()
+    public int generateCard()
     {
         int num = Random.Range(0, 15);
         Transform card = Instantiate(board.GetComponent<Board>().cards[num], GetComponent<RectTransform>().anchoredPosition, Quaternion.identity);
         card.transform.SetParent(transform.parent, false);
+        return num;
     }
 }
