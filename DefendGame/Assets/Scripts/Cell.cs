@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cell : MonoBehaviour
 {
@@ -11,13 +12,15 @@ public class Cell : MonoBehaviour
     public int add_coins;
     public bool accelerated;
     public bool reduced;
-    Board s;
+
+    // Board s;
     Animator animator;
     public AudioClip deathSound;
     private AudioSource source;
 
     void Start()
     {
+
         animator = GetComponent<Animator>();
         board = GameObject.Find("Canvas");
         source = GetComponent<AudioSource>();
@@ -44,8 +47,17 @@ public class Cell : MonoBehaviour
             accelerated = true;
             // Debug.Log(speed);
         }
+        Scene currentScene = SceneManager.GetActiveScene();
         transform.position = new Vector2(transform.position.x-speed, transform.position.y);
-        if (transform.position.x < 300) Board.gameOver = true;
+        if (transform.position.x < 300) 
+        {
+            Board.gameOver = true;
+            if (currentScene.name == "Tutorial")
+            {
+                Board.count_virus = 0;
+                Board.generate_virus = true;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -55,6 +67,7 @@ public class Cell : MonoBehaviour
             life--;
             if (life <= 0)
             {
+                Board.generate_virus = true;
                 animator.SetTrigger("Death");
                 source.PlayOneShot(deathSound, 0.8f);
                 Destroy(gameObject, 2);

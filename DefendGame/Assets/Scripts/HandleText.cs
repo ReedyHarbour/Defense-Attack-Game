@@ -13,12 +13,13 @@ public class HandleText : MonoBehaviour {
     float startTime;
     float elapsedTime;
     Scene currentScene;
+    public int temp_virus = Board.count_virus;
 
 	void Start () {
         currentScene = SceneManager.GetActiveScene();
+        startTime = Time.time;
         if (currentScene.name == "Tutorial")
         {
-            startTime = Time.time;
             enterText.SetActive(false);
             mouse.SetActive(false);
             warningText.SetActive(false);
@@ -42,7 +43,7 @@ public class HandleText : MonoBehaviour {
             TimeLine();
     }
 
-    void TimeLine ()
+    void TimeLine()
     {
         if (elapsedTime < 2 && elapsedTime > 0.5)
         {
@@ -55,34 +56,30 @@ public class HandleText : MonoBehaviour {
             // continueText.SetActive(true);
             enterText.GetComponent<UnityEngine.UI.Text>().text = "TRY DRAGGING THE CARDS...";
         }
-        else if (elapsedTime < 6 && elapsedTime > 5)
+        else if (Board.count_virus - temp_virus > 0)
         {
-            paused = true;
-            continueText.SetActive(true);
-            
-        }
-        else if (elapsedTime < 20 && elapsedTime >= 6)
-        {
-            if (GetComponent<Board>().dragTrials[0])
-            {
-                mouse.SetActive(false);
-                warningText.SetActive(true);
-                if (GetComponent<Board>().dragTrials[1])
-                {
-                    enterText.GetComponent<UnityEngine.UI.Text>().text = "BEWARE OF DIFFERENT ATTACKS.";
-                    warningText.SetActive(false);
-                }
-                else
-                {
-                    enterText.GetComponent<UnityEngine.UI.Text>().text = "TRY AGAIN WITH ONLY RED ROWS.";
-                }
-            }
-            else
-            {
-                enterText.GetComponent<UnityEngine.UI.Text>().text = "TRY AGAIN WITH ONLY RED ROWS.";
-            }
-        }
-        else enterText.SetActive(false);
-    }
 
+            if (Board.count_virus >= 2 && Board.count_virus < 3)
+            {
+                enterText.GetComponent<UnityEngine.UI.Text>().text = "ANOTHER VIRUS COMING...";
+            }
+            else if (Board.count_virus >= 3 && Board.count_virus < 4)
+            {
+                enterText.GetComponent<UnityEngine.UI.Text>().text = "THIS VIRUS IS STRONGER...";
+            }
+            else if (Board.count_virus >= 4 && Board.count_virus < 5)
+            {
+                enterText.GetComponent<UnityEngine.UI.Text>().text = "THIS VIRUS CAN DISAPPEAR...";
+            }
+            else if (Board.count_virus >= 5)
+            {
+                enterText.GetComponent<UnityEngine.UI.Text>().text = "YOU COMPLETED THE TUTORIAL!";
+            }
+            if (Time.time - Board.virus_time > 1 && Time.time - Board.virus_time < 2 && Board.count_virus < 5)
+            {
+                paused = true;
+                continueText.SetActive(true);
+            }
+        }
+    }
 }

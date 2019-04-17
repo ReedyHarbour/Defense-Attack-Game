@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114104218754323198}
   - component: {fileID: 82259025196345654}
   m_Layer: 10
-  m_Name: Firewall
+  m_Name: firewall
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 102697febacae624697b7a3da193fbac, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -11,6 +11,6 @@ public class Control : MonoBehaviour {
             Board.hasEnded = false;
             Board.startMode = 2;
             Board.score = 0;
-            Board.coins = 50;
+            Board.coins = 30;
       }
 }

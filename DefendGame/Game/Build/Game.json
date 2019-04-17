@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "DefendGame",
+"dataUrl": "Game.data.unityweb",
+"wasmCodeUrl": "Game.wasm.code.unityweb",
+"wasmFrameworkUrl": "Game.wasm.framework.unityweb",
+"asmCodeUrl": "Game.asm.code.unityweb",
+"asmMemoryUrl": "Game.asm.memory.unityweb",
+"asmFrameworkUrl": "Game.asm.framework.unityweb",
+"TOTAL_MEMORY": 1073741824,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}

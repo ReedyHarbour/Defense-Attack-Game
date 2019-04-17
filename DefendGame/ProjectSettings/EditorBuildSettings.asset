@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: 8b7b215032e4ae349beb1a5425af5198
@@ -17,4 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 7314677bcc0c96448933caa9c82aa4ae
+  - enabled: 1
+    path: Assets/Scenes/Slow.unity
+    guid: c394372f1a822db4db8040f4f57f65da
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Page.unity
+    guid: 82b205d0fde524b448a3ad7a0dc4b43d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 54cd2981100c1664190991c4fb687a9a
+  - enabled: 1
+    path: Assets/Scenes/LogIn.unity
+    guid: 93f22b06ef898424ba7d43512c8665ec
+  - enabled: 0
+    path: Assets/dreamlo/LeaderBoardSampleScene.unity
+    guid: f8e9907debfbe4aaa9c18fb200e5abf5
   m_configObjects: {}
