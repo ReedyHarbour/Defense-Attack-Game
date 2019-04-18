@@ -33,6 +33,9 @@ public class Button : MonoBehaviour {
         Board.startMode = 1;
         Board.score = 0;
         Board.coins = 50;
+        Board.count_virus = 0;
+        Board.generate_virus = true;
+        Board.tutorial_complete = false;
     }
 
     public void saveName()

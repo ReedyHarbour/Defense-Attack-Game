@@ -17,9 +17,9 @@ public class HandleText : MonoBehaviour {
 
 	void Start () {
         currentScene = SceneManager.GetActiveScene();
+        startTime = Time.time;
         if (currentScene.name == "Tutorial")
         {
-            startTime = Time.time;
             enterText.SetActive(false);
             mouse.SetActive(false);
             warningText.SetActive(false);
@@ -75,7 +75,7 @@ public class HandleText : MonoBehaviour {
             {
                 enterText.GetComponent<UnityEngine.UI.Text>().text = "YOU COMPLETED THE TUTORIAL!";
             }
-            if (elapsedTime - Board.virus_time > 1 && elapsedTime - Board.virus_time < 2 && Board.count_virus < 5)
+            if (Time.time - Board.virus_time > 1 && Time.time - Board.virus_time < 2 && Board.count_virus < 5)
             {
                 paused = true;
                 continueText.SetActive(true);

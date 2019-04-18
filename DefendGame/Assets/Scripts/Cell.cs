@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cell : MonoBehaviour
 {
@@ -46,8 +47,17 @@ public class Cell : MonoBehaviour
             accelerated = true;
             // Debug.Log(speed);
         }
+        Scene currentScene = SceneManager.GetActiveScene();
         transform.position = new Vector2(transform.position.x-speed, transform.position.y);
-        if (transform.position.x < 300) Board.gameOver = true;
+        if (transform.position.x < 300) 
+        {
+            Board.gameOver = true;
+            if (currentScene.name == "Tutorial")
+            {
+                Board.count_virus = 0;
+                Board.generate_virus = true;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

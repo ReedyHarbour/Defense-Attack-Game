@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114104218754323198}
   - component: {fileID: 82259025196345654}
   m_Layer: 10
-  m_Name: Firewall
+  m_Name: firewall
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,11 +41,13 @@ public class Board : MonoBehaviour {
     public static bool changeScene;
     void Start () {
         currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "Tutorial") startMode = 0;
+        if (currentScene.name == "Tutorial") 
+        {
+        	startMode = 0;
+        }
         if (currentScene.name == "Slow") startMode = 1;
         if (currentScene.name == "Main") startMode = 2;
         startTime = Time.time;
-        virus_time = Time.time;
         numOfCards = 6;
         for (int i = 0; i < has_card.Length; i++) {
             has_card[i] = true;
