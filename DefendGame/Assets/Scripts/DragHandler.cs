@@ -91,6 +91,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (Board.gameOver) return;
         indrag = false;
         highlightPos(false);
+        if (dragged) return;
         if (transform.tag != "Card" || !canPlacePos(transform.parent.tag))
         {
             transform.position = startPos;
@@ -99,8 +100,6 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
         else
         {
-            //if (canPlacePos(transform.parent.tag))
-            //{
                 transform.position = transform.parent.position;
                 Board.numOfCards--;
                 Board.has_card[index - 1] = false;
@@ -108,8 +107,8 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 Board.coins -= coins;
                 source.PlayOneShot(coinSound, 0.8f);
                 dragged = true;
-            //}
-            curr = null;
+                curr = null;
+            
         }
         
     }

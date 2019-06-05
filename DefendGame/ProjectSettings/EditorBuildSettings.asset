@@ -32,4 +32,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/dreamlo/LeaderBoardSampleScene.unity
     guid: f8e9907debfbe4aaa9c18fb200e5abf5
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Slides.unity
+    guid: 787b329a4e906c34eafc80208a1c4139
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Slides 1.unity
+    guid: 9d9c862de5436d74388a17ea0622b5d2
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Slides 2.unity
+    guid: 46528983616bd2b44a21a15168fccdb1
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Slides 3.unity
+    guid: d7ee93d828ebdd6439474e59ffc1f58c
   m_configObjects: {}
